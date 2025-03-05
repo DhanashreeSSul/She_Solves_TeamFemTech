@@ -1,3 +1,4 @@
+
 document.getElementByld('ineventoryForm')
 .addEventListener('submit',async(e)=> {
     e.preventDefault();
@@ -34,4 +35,3 @@ async function loadInventory() {
 }
 
 loadInventory();
-
