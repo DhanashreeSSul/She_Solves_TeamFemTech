@@ -22,11 +22,29 @@
             justify-content: space-between;
             align-items: center;
         }
+        .profile-section {
+            display: flex;
+            align-items: center;
+        }
         .profile-icon img {
             width: 40px;
             height: 40px;
             border-radius: 50%;
             cursor: pointer;
+            margin-right: 15px;
+        }
+        .auth-buttons button {
+            background-color: #D98324;
+            color: white;
+            border: none;
+            padding: 10px;
+            margin-left: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .auth-buttons button:hover {
+            background-color: #b76b1b;
         }
         nav {
             background-color: #D98324;
@@ -90,8 +108,14 @@
 <body>
     <header>
         <h1>Medical Inventory Management</h1>
-        <div class="profile-icon" onclick="goToDashboard()">
-            <img src="profile.png" alt="Profile">
+        <div class="profile-section">
+            <div class="profile-icon" onclick="goToDashboard()">
+                <img src="profile.png" alt="Profile">
+            </div>
+            <div class="auth-buttons">
+                <button onclick="window.location.href='login.html'">Login</button>
+                <button onclick="window.location.href='registration.html'">Sign Up</button>
+            </div>
         </div>
     </header>
     
