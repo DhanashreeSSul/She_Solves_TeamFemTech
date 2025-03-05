@@ -1,29 +1,165 @@
 <!DOCTYPE html>
-<html lang ="en">
-</head>  
+<html lang="en">
+<head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-content="width=device-width,initial-scale=1.0">  
-      <title>Medical Inventory Management</title>
-      <link rel="stylesheet" href="She_Solves_TeamFemTech/Frontend/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Inventory Management</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #F2F6D0;
+        }
+        header {
+            background-color: #443627;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .profile-icon img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        nav {
+            background-color: #D98324;
+            padding: 10px;
+            text-align: center;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+        main {
+            padding: 20px;
+            text-align: center;
+        }
+        section {
+            background-color: #EFDCAB;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px auto;
+            width: 50%;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        input, button {
+            margin: 10px 0;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #D98324;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #b76b1b;
+        }
+        footer {
+            background-color: #443627;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
-    <h1>Medical Inventory Management </h1>
-    <form id="inventoryForm">
-        <input type="text" id="name"
-placeholder="Item Name" required>
-        <input type="text"id="category"
-placeholder="Category" required>
-        <input type="number"id="quantity"
-placeholder="Quantity"required>
-        <input type="date"id="expiry_date" required>
-        <input type="number"
-id="threshold_limit"placeholder="Threshold Limit"required>
-        <button type="submit">Add Item </button>
-    </form>
-    <div id="invenoryList"></div>
+    <header>
+        <h1>Medical Inventory Management</h1>
+        <div class="profile-icon" onclick="goToDashboard()">
+            <img src="profile.png" alt="Profile">
+        </div>
+    </header>
     
-    <script src="She_Solves_TeamFemTech/Frontend/script.js"></script>
-    </body>
-    </html>
-                 
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="inventory.html">Inventory</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+        </ul>
+    </nav>
+    
+    <main>
+        <section id="home">
+            <h2>Welcome to Medical Inventory Management</h2>
+            <p>Track your medical supplies efficiently and never run out of stock.</p>
+        </section>
+        
+        <section id="inventory">
+            <h2>Add Inventory Item</h2>
+            <form id="inventoryForm">
+                <input type="text" id="name" placeholder="Item Name" required>
+                <input type="text" id="category" placeholder="Category" required>
+                <input type="number" id="quantity" placeholder="Quantity" required>
+                <input type="date" id="expiry_date" required>
+                <input type="number" id="threshold_limit" placeholder="Threshold Limit" required>
+                <button type="submit">Add Item</button>
+            </form>
+            <div id="inventoryList"></div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 Medical Inventory. All rights reserved.</p>
+    </footer>
+    
+    <script>
+        document.getElementById('inventoryForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const item = {
+                name: document.getElementById('name').value,
+                category: document.getElementById('category').value,
+                quantity: document.getElementById('quantity').value,
+                expiry_date: document.getElementById('expiry_date').value,
+                threshold_limit: document.getElementById('threshold_limit').value
+            };
+            await fetch('http://localhost:5000/api/inventory/add', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(item)
+            });
+            loadInventory();
+        });
+
+        async function loadInventory() {
+            const res = await fetch('http://localhost:5000/api/inventory');
+            const data = await res.json();
+            let html = '<h2>Inventory List</h2>';
+            data.forEach(item => {
+                html += `<p>${item.name} - ${item.quantity}</p>`;
+            });
+            document.getElementById('inventoryList').innerHTML = html;
+        }
+
+        function goToDashboard() {
+            window.location.href = 'dashboard.html';
+        }
+
+        loadInventory();
+    </script>
+</body>
+</html>
