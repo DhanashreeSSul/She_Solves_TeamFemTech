@@ -8,7 +8,7 @@ router.post('/add', async(req, res)=>{
         await newItem.save();
         res.status(201).json({ message: "Item added Succesfully", newItem });   
     } catch(error){
-        res.status(500).json({error: error.message});
+        res.status(500).json({error: "FAiled to Add Item"});
     }
 });
 
