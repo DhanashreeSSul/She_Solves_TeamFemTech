@@ -8,7 +8,9 @@ app.use(express.json());
 app.use(cors());         
 
 connectDB();
-
+app.get("/", (req, res) => {
+    res.send("Server is running!");
+});
 const inventoryRoutes = require("./routes/inventory");
 app.use("/api/inventory", inventoryRoutes);
 
