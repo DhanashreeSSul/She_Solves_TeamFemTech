@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: #443627;
+            background: linear-gradient(to right, #d6e4f5, #a4c9df);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -15,14 +15,19 @@
             margin: 0;
         }
         .container {
-            background: #EFDCAB;
+            background: #F2F6D0;
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2), -5px -5px 15px rgba(255, 255, 255, 0.2);
             width: 320px;
             text-align: center;
+            position: relative;
+            transition: transform 0.3s ease-in-out;
         }
-        h2 { color: #D98324; }
+        .container:hover {
+            transform: scale(1.05);
+        }
+        h2 { color: #1d3a6d; }
         .input-group {
             margin: 10px 0;
             text-align: left;
@@ -38,23 +43,45 @@
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
+            outline: none;
+            transition: 0.3s;
+        }
+        input:focus {
+            border-color: #1d3a6d;
+            box-shadow: 0 0 8px rgba(29, 58, 109, 0.5);
         }
         button {
             width: 100%;
             padding: 10px;
-            background: #D98324;
+            background: #1d3a6d;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
+            transition: 0.3s;
         }
-        button:hover { background: #b76b1b; }
-        p { margin-top: 15px; }
-        a { text-decoration: none; color: #D98324; }
+        button:hover {
+            background: #b76b1b;
+            transform: scale(1.05);
+        }
+        p {
+            margin-top: 15px;
+        }
+        a {
+            text-decoration: none;
+            color: #D98324;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        a:hover {
+            color: #b76b1b;
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
+
     <div class="container">
         <h2>Register</h2>
         <form action="/signup" method="POST">
@@ -76,7 +103,5 @@
             </div>
             <button type="submit">Register</button>
         </form>
-        <p>Already have an account? <a href="/">Login</a></p>
+        <p>Already have an account? <a href="login.html">Login</a></p>
     </div>
-</body>
-</html>

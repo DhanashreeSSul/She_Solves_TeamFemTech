@@ -38,6 +38,9 @@ header {
 .auth-buttons button:hover{
     background-color:#1d3a6d;
 }
+h1{
+    font-family: 'Times New Roman', Times, serif;
+}
 /*navigation bar*/
 nav{
     background-color:#4aa0c4;
