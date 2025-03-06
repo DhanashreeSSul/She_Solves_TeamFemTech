@@ -2,10 +2,10 @@
   "name": "she_solves_teamfemtech",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
-"scripts": {
-  "start": "node backend/server.js"
-},
+  "main": "db.js",
+  "scripts": {
+    "start": "node server.js"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

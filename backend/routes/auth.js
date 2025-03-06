@@ -4,7 +4,6 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/user");
 require("dotenv").config();
 
-const router = express.Router();
 
 router.post("/register", async (req, res) => {
   try {
@@ -29,25 +28,27 @@ router.post("/register", async (req, res) => {
 });
 
 
+const router = express.Router();
+
+// Login Route
 router.post("/login", async (req, res) => {
-  try {
-    const { email, password } = req.body;
+    try {
+        const { email, password } = req.body;
 
+        // Check if user exists
+        const user = await User.findOne({ email });
+        if (!user) return res.status(400).json({ message: "User not found" });
 
-    let user = await User.findOne({ email });
-    if (!user) return res.status(400).json({ message: "Invalid email or password" });
+        // Compare password
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) return res.status(401).json({ message: "Wrong password" });
 
- 
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) return res.status(400).json({ message: "Invalid email or password" });
+        // Redirect to homepage
+        res.json({ message: "Login successful", redirect: "/home" });
 
-   
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
-
-    res.json({ message: "Login successful", token });
-  } catch (error) {
-    res.status(500).json({ message: "Server error" });
-  }
+    } catch (error) {
+        res.status(500).json({ message: "Server error" });
+    }
 });
 
 module.exports = router;
