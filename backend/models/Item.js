@@ -1,9 +1,11 @@
-const mongoose=required('mongoose');
-const ItemSchema=new mongoose.Schema({
-    name:String,
-    category:String,
-    quantity:Number,
-    expiry_date:Date,
-    threshold_limit:Number
-})
-module.exports=mongoose.model("Item",ItemSchema);
+const mongoose = require('mongoose');
+
+const ItemSchema = new mongoose.Schema({
+    name: { type: String, required: true },
+    category: { type: String, required: true },
+    quantity: { type: Number, required: true },
+    expiry_date: { type: Date, required: false },
+    threshold_limit: { type: Number, required: false }
+});
+
+module.exports = mongoose.model("Item", ItemSchema);
