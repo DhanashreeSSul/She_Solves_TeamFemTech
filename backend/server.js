@@ -9,9 +9,9 @@ app.use(cors());
 
 
 connectDB().then(() => {
-    console.log("✅ MongoDB connected successfully to Compass");
+    console.log("MongoDB connected successfully to Compass");
 }).catch(err => {
-    console.error("❌ MongoDB connection error:", err);
+    console.error("MongoDB connection error:", err);
     process.exit(1);
 });
 
@@ -20,12 +20,12 @@ app.use("/api/inventory", inventoryRoutes);
 
 
 process.on("uncaughtException", (err) => {
-    console.error("❌ Uncaught Exception:", err);
+    console.error("Uncaught Exception:", err);
     process.exit(1);
 });
 
 process.on("unhandledRejection", (reason, promise) => {
-    console.error("❌ Unhandled Rejection at:", promise, "reason:", reason);
+    console.error("Unhandled Rejection at:", promise, "reason:", reason);
 });
 
 const PORT =  5000;
