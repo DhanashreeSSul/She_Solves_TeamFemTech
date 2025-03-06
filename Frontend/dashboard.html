@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Medical Inventory</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #F2F6D0;
+        }
+        header {
+            background-color: #443627;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            background-color: #D98324;
+            padding: 10px;
+            text-align: center;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+        main {
+            padding: 20px;
+            text-align: center;
+        }
+        .dashboard-container {
+            background-color: #EFDCAB;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px auto;
+            width: 60%;
+        }
+        .dashboard-container h2 {
+            color: #443627;
+        }
+        .dashboard-card {
+            background-color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        footer {
+            background-color: #443627;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Dashboard</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="inventory.html">Inventory</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="dashboard-container">
+            <h2>Inventory Overview</h2>
+            <div id="inventoryStats">
+                <div class="dashboard-card">
+                    <h3>Total Items</h3>
+                    <p id="totalItems">Loading...</p>
+                </div>
+                <div class="dashboard-card">
+                    <h3>Low Stock Items</h3>
+                    <p id="lowStockItems">Loading...</p>
+                </div>
+                <div class="dashboard-card">
+                    <h3>Expiring Soon</h3>
+                    <p id="expiringItems">Loading...</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Medical Inventory. All rights reserved.</p>
+    </footer>
+
+    <script>
+        async function loadDashboardStats() {
+            try {
+                const response = await fetch('http://localhost:5000/api/inventory/stats');
+                if (!response.ok) {
+                    throw new Error("Failed to load stats");
+                }
+                const stats = await response.json();
+
+                document.getElementById('totalItems').textContent = stats.totalItems;
+                document.getElementById('lowStockItems').textContent = stats.lowStockItems;
+                document.getElementById('expiringItems').textContent = stats.expiringItems;
+            } catch (error) {
+                console.error("Error:", error);
+            }
+        }
+
+        loadDashboardStats();
+    </script>
+</body>
+</html>
