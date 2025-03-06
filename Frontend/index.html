@@ -124,33 +124,45 @@
             <li><a href="index.html">Home</a></li>
             <li><a href="inventory.html">Inventory</a></li>
             <li><a href="dashboard.html">Dashboard</a></li>
+            
+
         </ul>
     </nav>
     
     <main>
-        <section id="home">
-            <h2>Welcome to Medical Inventory Management</h2>
-            <p>Track your medical supplies efficiently and never run out of stock.</p>
-        </section>
         
-        <section id="inventory">
-            <h2>Add Inventory Item</h2>
-            <form id="inventoryForm">
-                <input type="text" id="name" placeholder="Item Name" required>
-                <input type="text" id="category" placeholder="Category" required>
-                <input type="number" id="quantity" placeholder="Quantity" required>
-                <input type="date" id="expiry_date" required>
-                <input type="number" id="threshold_limit" placeholder="Threshold Limit" required>
-                <button type="submit">Add Item</button>
-            </form>
-            <div id="inventoryList"></div>
-        </section>
+        <section class="hero">
+            <h2>Efficient Medical Inventory Management</h2>
+            <p>Ensuring hospitals, clinics, and pharmacies stay stocked with the right medical supllies
+                .</p>
+         </section>  
+
+         <div class="content">
+            <section>
+                <h2>Our Aim</h2>
+                <p>We aim to simplify the tracking,management, and restocking of medical supplies to prevent shortages and wastage.</p>
+            </section>
+            <section class="features">
+                <h2>What we Provide</h2>
+                <ul>
+                    <li>Track your medical supplies</li>
+                    <li>Automated Restock Notification</li>
+                    <li>Expiry Date Alert</li>
+                    <li>Secure and easy to use Interface</li>
+                </ul>
+            
+            </section>
+        </div>
+       
+        
+     
     </main>
     
     <footer>
         <p>&copy; 2025 Medical Inventory. All rights reserved.</p>
     </footer>
     
+<<<<<<< HEAD
     <script>
        document.getElementById('inventoryForm').addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -203,5 +215,10 @@ async function loadInventory() {
 loadInventory();
 
     </script>
+=======
+    
+
+        
+>>>>>>> f07a2de (homepage)
 </body>
 </html>
