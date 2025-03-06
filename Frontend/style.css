@@ -23,6 +23,21 @@ header {
     cursor:pointer;
     margin-right:15px;
 }
+
+.auth-buttons button{
+    background-color:#4aa0c4;
+    color:white;
+    border:none;
+    padding:10px;
+    margin-left:10 px;
+    border-radius:5px;
+    cursor:pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.auth-buttons button:hover{
+    background-color:#1d3a6d;
+}
 /*navigation bar*/
 nav{
     background-color:#4aa0c4;
@@ -48,45 +63,43 @@ nav ul li a{
 nav ul li a:hover{
     color: #d6e4f5;
 }
-hero{
-    text-align:center;
-    padding:50px;
-    background:#7bb7d1;
-    color: white;
-    font-size:1.2rem;
-    border-radius: 0 0 20px 20px
-    
-}
 
-.content{
-    display:flex;
-    justify-content:space-between;
-    margin:30px;
-}
-
-.about, .features{
-    background: white;
+section{
+    background-color:#a4c9df;
     padding:20px;
+    margin:20px auto;
     border-radius:10px;
-    width:45%;
     box-shadow:0 4px 8px rgba(0,0,0,0.1);
-    transition:transform 0.3s ease-in-out;
-
+    width:50%;
+    transition: transform 0.3s ease-in-out;
 }
 
-.about:hover, .features:hover{
+section.hover{
     transform:scale(1.02);
 }
-.features ul{
-   list-style-type:none;
-   padding:0;
+
+form{
+    display:flex;
+    flex-direction:column;
+   
 }
 
-.features ul li{
-    margin: 10px 0;
+input,button{
+    margin:10px 0;
+    padding:10px;
+    border-radius:5px;
+    border:none;
+}
+button{
+    background-color:#4aa0c4;
+    color:white;
+    cursor:pointer;
+    transition: background-color 0.3s ease-in-out;
     font-size:16px;
- }
-
+}
+button:hover{
+    background-color:#1d3a6d;
+}
 
 
 footer{
