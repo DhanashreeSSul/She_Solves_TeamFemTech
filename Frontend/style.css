@@ -15,6 +15,13 @@ header {
     justify-content: space-between;
     align-items:center;
 }
+
+.profile-icon img{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    margin-right:10px;
+}
 /*navigation bar*/
 nav{
     background-color:#FF9F1C;
@@ -22,61 +29,65 @@ nav{
     text-align: center;
 }
 
+nav ul{
+    list-style-type:none;
+    padding:0;
+}
+
+nav ul li{
+    display:inline;
+    margin:0 15px;
+}
 nav ul li a{
-    color:#ffffff;
-    transition:color 0.3s;
+    text-decoration:none;
+    color:white;
+    font-weight:bold;
 }
 nav ul li a:hover{
     color: #CBF3F0;
 }
-section{
-    background:white;
-    padding:20px;
-    border-radius:8px;
-    box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
-    width:50%;
-    border-left:5px solid #FFBF69;
-}
-form {
-    display: flex;
-    flex-direction: column;
-    width: 350px;
-    margin: auto;
-    padding:20px;
-    background:white;
-    border-radius:8px;
-    box-shadow:0 4px 10px rgba(0,0,0,0.1);
-}
-input{
-    margin: 8px 0;
-    padding: 12px;
-    border:1px solid #FFBF69;
-    border-radius:5px;
-    font-size:16 px;
-    transition: border 0.3s;
+hero{
+    text-align:center;
+    padding:50px;
+    background:#FFBF69;
+    color: #2EC4B6;
+    font-size:1.2rem;
+    
 }
 
-input:focus{
-    border:1px solid #2EC4B6;
-    outline:none;
-}
-#inventoryList {
-    margin-top: 20px;
+.content{
+    display:flex;
+    justify-content:space-between;
+    margin:30px;
 }
 
-button{
-    padding:12px;
-    background:linear-gradient(to right,#2EC4B6,#FF9F1C);
-    color:white;
-    border:none;
-    border-radius:5px;
+.about, .features{
+    background: white;
+    padding:20px;
+    border-radius:10px;
+    width:45%;
+    box-shadow:0 4px 8px rgba(0,0,0,0.1);
+
+
+}
+.features ul{
+   list-style-type:none;
+   padding:0;
+}
+
+.features ul li{
+    margin: 10px 0;
     font-size:16px;
-    cursor:pointer;
-    transition:transform 0.2s;
-}
+ }
 
-button:hover {
-    transform:scale(1.05)
-;
-background:linear-gradient(to right,#FF9F1C,#FFBF69);
+
+
+footer{
+    background-color: #2EC4B6;
+    color:white;
+    text-align:center;
+    padding:10px;
+    position:fixed;
+    bottom:0;
+    width:100%;
 }
