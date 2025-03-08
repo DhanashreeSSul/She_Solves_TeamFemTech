@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #d6e4f5, #a4c9df);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: #d0dcf6;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2), -5px -5px 15px rgba(255, 255, 255, 0.2);
+            text-align: center;
+            width: 350px;
+            position: relative;
+        }
+        h2 {
+            color: #1d3a6d;
+        }
+        .profile-pic {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #1d3a6d;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        .upload-btn {
+            background: #1d3a6d;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+        .upload-btn:hover {
+            background: #1b59b7;
+        }
+        .info {
+            margin-top: 15px;
+            font-size: 18px;
+        }
+        .logout-btn {
+            background: #d9534f;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+        .logout-btn:hover {
+            background: #c9302c;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Profile</h2>
+        <img src="default-profile.png" id="profilePic" class="profile-pic" alt="Profile Picture">
+        <input type="file" id="fileInput" accept="image/*">
+        <br>
+        <button class="upload-btn" onclick="document.getElementById('fileInput').click()">Change Picture</button>
+
+        <div class="info">
+            <p><strong>Name:</strong> <span id="userName">Loading...</span></p>
+            <p><strong>Email:</strong> <span id="userEmail">Loading...</span></p>
+        </div>
+
+        <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      
+        const userName = localStorage.getItem("userName") || "John Doe";
+        const userEmail = localStorage.getItem("userEmail") || "john.doe@example.com";
+        const profilePic = localStorage.getItem("profilePic") || "default-profile.png";
+
+        document.getElementById("userName").textContent = userName;
+        document.getElementById("userEmail").textContent = userEmail;
+        document.getElementById("profilePic").src = profilePic;
+    });
+
+    document.getElementById("fileInput").addEventListener("change", function(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById("profilePic").src = e.target.result;
+                localStorage.setItem("profilePic", e.target.result); 
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    function logout() {
+        localStorage.removeItem("token");
+        window.location.href = "login.html"; 
+    }
+
+    async function getUserProfile() {
+    const token = localStorage.getItem("token");
+    if (!token) return alert("Please login first");
+
+    const res = await fetch("http://localhost:5000/profile", {
+        method: "GET",
+        headers: { "Authorization": token },
+    });
+    const data = await res.json();
+    if (data.error) {
+        alert(data.error);
+    } else {
+        document.getElementById("profileData").innerHTML = `
+            <h2>Welcome, ${data.name}</h2>
+            <p>Email: ${data.email}</p>
+        `;
+    }
+}
+getUserProfile();
+    </script>
+
+</body>
+</html>
