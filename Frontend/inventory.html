@@ -177,6 +177,7 @@
 
                 document.getElementById('message').textContent = "Item added successfully!";
                 loadInventory();
+                updateDashboard();
             } catch (error) {
                 console.error("Error:", error);
             }
@@ -203,6 +204,20 @@
                 await fetch(`http://localhost:5000/api/inventory/delete/${id}`, { method: 'DELETE' });
                 document.getElementById('message').textContent = "Item deleted successfully!";
                 loadInventory();
+                updateDashboard();
+            } catch (error) {
+                console.error("Error:", error);
+            }
+        }
+
+        async function updateDashboard() {
+            try {
+                const res = await fetch('http://localhost:5000/api/inventory/stats');
+                const stats = await res.json();
+
+                document.getElementById('totalItems').textContent = stats.totalItems;
+                document.getElementById('lowStockItems').textContent = stats.lowStockItems;
+                document.getElementById('expiringItems').textContent = stats.expiringItems;
             } catch (error) {
                 console.error("Error:", error);
             }
