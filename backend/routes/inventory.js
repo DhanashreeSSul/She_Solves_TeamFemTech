@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Item = require('../models/Item');
 
-// Add item
+
 router.post('/add', async (req, res) => {
     try {
         const newItem = new Item(req.body);
@@ -13,7 +13,6 @@ router.post('/add', async (req, res) => {
     }
 });
 
-// Get all inventory items
 router.get('/', async (req, res) => {
     try {
         const items = await Item.find();
@@ -23,7 +22,6 @@ router.get('/', async (req, res) => {
     }
 });
 
-// Update inventory item
 router.put('/update/:id', async (req, res) => {
     try {
         const updatedItem = await Item.findByIdAndUpdate(req.params.id, req.body, { new: true });
