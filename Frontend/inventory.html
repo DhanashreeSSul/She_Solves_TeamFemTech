@@ -14,7 +14,7 @@
             background-color: #F2F6D0;
         }
         header {
-            background: linear-gradient(to right, #1d3a6d, #4aa0c4);
+            background-color: linear-gradient(to right, #1d3a6d, #4aa0c4);
             color: white;
             padding: 20px;
             text-align: center;
@@ -34,7 +34,7 @@
             margin-right: 15px;
         }
         .auth-buttons button {
-            background-color: #D98324;
+            background-color: #1e4a7d;
             color: white;
             border: none;
             padding: 10px;
@@ -44,7 +44,7 @@
             font-size: 14px;
         }
         .auth-buttons button:hover {
-            background-color: #1d3a6d;
+            background-color: #153259;
         }
         nav {
             background-color: #4aa0c4;
@@ -69,17 +69,16 @@
             text-align: center;
         }
         section {
-            background-color: #EFDCAB;
+            background-color: #d0e8f2;
             padding: 20px;
             border-radius: 10px;
             margin: 20px auto;
             width: 50%;
-            margin-bottom: 50px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
         }
         form {
             display: flex;
             flex-direction: column;
-            margin-bottom: 20px;
         }
         input, button {
             margin: 10px 0;
@@ -88,13 +87,13 @@
             border-radius: 5px;
         }
         button {
-            background-color: #D98324;
+            background-color: #1e4a7d;
             color: white;
             cursor: pointer;
             font-size: 16px;
         }
         button:hover {
-            background-color: #b76b1b;
+            background-color: #153259;
         }
         footer {
             background-color: #1d3a6d;
@@ -145,27 +144,27 @@
                 <input type="number" id="threshold_limit" placeholder="Threshold Limit" required>
                 <button type="submit">Add Item</button>
             </form>
-            <div id="message"></div>
             <div id="inventoryList"></div>
         </section>
     </main>
     
     <footer>
-        <p>&copy; 2025 MedySync</p>
+        <p>&copy; 2025 Medical Inventory. All rights reserved.</p>
     </footer>
     
     <script>
-        document.getElementById('inventoryForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            const item = {
-                name: document.getElementById('name').value,
-                category: document.getElementById('category').value,
-                quantity: document.getElementById('quantity').value,
-                expiry_date: document.getElementById('expiry_date').value,
-                threshold_limit: document.getElementById('threshold_limit').value
-            };
+       document.getElementById('inventoryForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const item = {
+        name: document.getElementById('name').value,
+        category: document.getElementById('category').value,
+        quantity: document.getElementById('quantity').value,
+        expiry_date: document.getElementById('expiry_date').value,
+        threshold_limit: document.getElementById('threshold_limit').value
+    };
 
+<<<<<<< HEAD
             try {
                 const response = await fetch('http://localhost:5000/api/inventory/add', {
                     method: 'POST',
@@ -181,24 +180,20 @@
             } catch (error) {
                 console.error("Error:", error);
             }
+=======
+    try {
+        const response = await fetch('http://localhost:5000/api/inventory/add', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(item)
+>>>>>>> 64cf49179672a3adb4f2f66899c31d12b0e9079e
         });
 
-        async function loadInventory() {
-            try {
-                const res = await fetch('http://localhost:5000/api/inventory');
-                if (!res.ok) throw new Error("Failed to load inventory");
-                const data = await res.json();
-                let html = '<h2>Inventory List</h2>';
-                data.forEach(item => {
-                    html += `<p>${item.name} - ${item.quantity} 
-                    <button onclick="deleteItem('${item.id}')">Delete</button></p>`;
-                });
-                document.getElementById('inventoryList').innerHTML = html;
-            } catch (error) {
-                console.error("Error:", error);
-            }
+        if (!response.ok) {
+            throw new Error("Failed to add item");
         }
 
+<<<<<<< HEAD
         async function deleteItem(id) {
             try {
                 await fetch(`http://localhost:5000/api/inventory/delete/${id}`, { method: 'DELETE' });
@@ -222,8 +217,36 @@
                 console.error("Error:", error);
             }
         }
+=======
+        const result = await response.json();
+        console.log(result.message);
+        loadInventory(); // Reload inventory list after adding
+    } catch (error) {
+        console.error("Error:", error);
+    }
+});
 
-        loadInventory();
+async function loadInventory() {
+    try {
+        const res = await fetch('http://localhost:5000/api/inventory');
+        if (!res.ok) {
+            throw new Error("Failed to load inventory");
+        }
+        const data = await res.json();
+        let html = '<h2>Inventory List</h2>';
+        data.forEach(item => {
+            html += `<p>${item.name} - ${item.quantity}</p>`;
+        });
+        document.getElementById('inventoryList').innerHTML = html;
+    } catch (error) {
+        console.error("Error:", error);
+    }
+}
+
+// Load inventory on page load
+loadInventory();
+>>>>>>> 64cf49179672a3adb4f2f66899c31d12b0e9079e
+
     </script>
 </body>
 </html>
