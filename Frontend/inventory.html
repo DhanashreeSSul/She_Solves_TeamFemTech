@@ -14,7 +14,7 @@
             background-color: #F2F6D0;
         }
         header {
-            background-color: #443627;
+            background: linear-gradient(to right, #1d3a6d, #4aa0c4);
             color: white;
             padding: 20px;
             text-align: center;
@@ -44,10 +44,10 @@
             font-size: 14px;
         }
         .auth-buttons button:hover {
-            background-color: #b76b1b;
+            background-color: #1d3a6d;
         }
         nav {
-            background-color: #D98324;
+            background-color: #4aa0c4;
             padding: 10px;
             text-align: center;
         }
@@ -74,10 +74,12 @@
             border-radius: 10px;
             margin: 20px auto;
             width: 50%;
+            margin-bottom: 50px;
         }
         form {
             display: flex;
             flex-direction: column;
+            margin-bottom: 20px;
         }
         input, button {
             margin: 10px 0;
@@ -95,7 +97,7 @@
             background-color: #b76b1b;
         }
         footer {
-            background-color: #443627;
+            background-color: #1d3a6d;
             color: white;
             text-align: center;
             padding: 10px;
@@ -149,7 +151,7 @@
     </main>
     
     <footer>
-        <p>&copy; 2025 Medical Inventory. All rights reserved.</p>
+        <p>&copy; 2025 MedySync</p>
     </footer>
     
     <script>
@@ -188,7 +190,6 @@
                 let html = '<h2>Inventory List</h2>';
                 data.forEach(item => {
                     html += `<p>${item.name} - ${item.quantity} 
-                    <button onclick="editItem('${item.id}')">Edit</button>
                     <button onclick="deleteItem('${item.id}')">Delete</button></p>`;
                 });
                 document.getElementById('inventoryList').innerHTML = html;

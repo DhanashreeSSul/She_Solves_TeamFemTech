@@ -10,10 +10,11 @@
 </head>
 <body>
     <header>
+        <img src="Assets/logo.png" alt="Profile">
         <h1>MediSync</h1>
         <div class="profile-section">
             <div class="profile-icon" onclick="goToDashboard()">
-                <img src="profile.png" alt="Profile">
+                <a href="profile.html"><img src="Assets/user.png" alt="Profile"></a>
             </div>
             <div class="auth-buttons">
                 <button onclick="window.location.href='login.html'">Login</button>
@@ -33,17 +34,15 @@
     </nav>
     
     <main>
-        
         <section class="hero">
             <h2>Efficient Medical Inventory Management</h2>
             <p>Ensuring hospitals, clinics, and pharmacies stay stocked with the right medical supllies
                 .</p>
          </section>  
-
-         <div class="content">
+        <div class="content">
             <section>
                 <h2>Our Aim</h2>
-                <p>We aim to simplify the tracking,management, and restocking of medical supplies to prevent shortages and wastage.</p>
+                <p>We aim to simplify the tracking, management, and restocking of medical supplies to prevent shortages and wastage.</p>
             </section>
             <section class="features">
                 <h2>What we Provide</h2>
@@ -51,71 +50,42 @@
                     <li>Track your medical supplies</li>
                     <li>Automated Restock Notification</li>
                     <li>Expiry Date Alert</li>
-                    <li>Secure and easy to use Interface</li>
+                    <li>Secure and easy-to-use Interface</li>
                 </ul>
-            
             </section>
-        </div>
-       
-        
-     
+        </div>         
+        </div>     
     </main>
+    <footer id="modern-footer">
+        <div class="modern-footer-container">
+            <div class="footer-column-footer-logo">
+                <img src="Assets/logo.png" alt="Logo">
+                <p style="font-family: 'Times New Roman', Times, serif;">MedySync</p>
+            </div>
+            
+            <div class="footer-column">
+                <h2>Quick Links</h2>
+                <ul class="modern-footer-links">
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="inventory.html">INVENTORY</a></li>
+                    <li><a href="dahsboard.html">DASHBOARD</a></li>
     
-    <footer>
-        <p>&copy; 2025 Medical Inventory. All rights reserved.</p>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h2>Contact</h2>
+                <ul class="modern-footer-contact">
+                    <li><i class="fas fa-map-marker-alt"></i> PCCOE, Pune</li>
+                    <li><i class="fas fa-phone"></i> Toll-Free: 1800-123-4567</li>
+                    <li><i class="fas fa-envelope"></i> Email: support@agriculture.com</li>
+                </ul>
+            </div>
+        </div>
+        <div class="modern-footer-bottom">
+            <p>&copy; 2025 MedySync</p>
+        </div>
     </footer>
     
-    <script>
-       document.getElementById('inventoryForm').addEventListener('submit', async (e) => {
-    e.preventDefault();
     
-    const item = {
-        name: document.getElementById('name').value,
-        category: document.getElementById('category').value,
-        quantity: document.getElementById('quantity').value,
-        expiry_date: document.getElementById('expiry_date').value,
-        threshold_limit: document.getElementById('threshold_limit').value
-    };
-
-    try {
-        const response = await fetch('http://localhost:5000/api/inventory/add', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(item)
-        });
-
-        if (!response.ok) {
-            throw new Error("Failed to add item");
-        }
-
-        const result = await response.json();
-        console.log(result.message);
-        loadInventory();
-    } catch (error) {
-        console.error("Error:", error);
-    }
-});
-
-async function loadInventory() {
-    try {
-        const res = await fetch('http://localhost:5000/api/inventory');
-        if (!res.ok) {
-            throw new Error("Failed to load inventory");
-        }
-        const data = await res.json();
-        let html = '<h2>Inventory List</h2>';
-        data.forEach(item => {
-            html += `<p>${item.name} - ${item.quantity}</p>`;
-        });
-        document.getElementById('inventoryList').innerHTML = html;
-    } catch (error) {
-        console.error("Error:", error);
-    }
-}
-
-// Load inventory on page load
-loadInventory();
-
-    </script>
 </body>
 </html>
