@@ -14,11 +14,45 @@
             background-color: #F2F6D0;
         }
         header {
-            background-color: #443627;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
+    background: linear-gradient(to right, #1d3a6d, #4aa0c4);
+    color:white;
+    padding:5px;
+    text-align: center;
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+}
+header img{
+    width: 200px;
+    height: 150px;
+}
+.profile-icon img{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    cursor:pointer;
+    margin-right:15px;
+}
+
+.auth-buttons button{
+    background-color:#4aa0c4;
+    color:white;
+    border:none;
+    padding:10px;
+    margin-left:10 px;
+    border-radius:5px;
+    cursor:pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.auth-buttons button:hover{
+    background-color:#1d3a6d;
+}
+h1{
+    font-family: 'Times New Roman', Times, serif;
+}
+
+
         nav {
             background-color: #D98324;
             padding: 10px;
@@ -71,7 +105,17 @@
 </head>
 <body>
     <header>
-        <h1>Dashboard</h1>
+        <img src="Assets/logo.png" alt="Profile">
+        <h1>DASHBOARD</h1>
+        <div class="profile-section">
+            <div class="profile-icon" onclick="goToDashboard()">
+                <a href="profile.html"><img src="Assets/user.png" alt="Profile"></a>
+            </div>
+            <div class="auth-buttons">
+                <button onclick="window.location.href='login.html'">Login</button>
+                <button onclick="window.location.href='registration.html'">Sign Up</button>
+            </div>
+        </div>
     </header>
 
     <nav>
